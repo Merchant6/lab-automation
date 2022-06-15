@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,8 @@ Route::post('custom-registration', [AdminController::class, 'customRegistration'
 //Login Routes
 Route::get('login', [AdminController::class, 'login'])->name('login');
 Route::post('custom-login', [AdminController::class, 'customLogin'])->name('login.custom'); 
+
+
+//Log-Out Routes
+Route::get('signout', [AdminController::class, 'signOut'])->name('signout'); 
+
