@@ -102,7 +102,7 @@
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="./login.blade.php" class="text-primary">Login</a>
+                  Already have an account? <a href="{{route('login')}}" class="text-primary">Login</a>
                 </div>
               </form>
             </div>
@@ -118,12 +118,12 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../../vendors/base/vendor.bundle.base.js"></script>
+ <script src="{{asset('/theme/vendors/base/vendor.bundle.base.js')}}"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/hoverable-collapse.js"></script>
-  <script src="../../js/template.js"></script>
+  <script src="{{asset('/theme/js/off-canvas.js')}}"></script>
+  <script src="{{asset('/theme/js/hoverable-collapse.js')}}"></script>
+  <script src="{{asset('/theme/js/template.js')}}"></script>
   <!-- endinject -->
 </body>
 

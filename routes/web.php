@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('index');
 });
 
 
@@ -31,4 +32,7 @@ Route::post('custom-login', [AdminController::class, 'customLogin'])->name('logi
 
 //Log-Out Routes
 Route::get('signout', [AdminController::class, 'signOut'])->name('signout'); 
+
+//Dashboard Routes
+Route::get('index', [HomeController::class, 'home'])->name('index'); 
 

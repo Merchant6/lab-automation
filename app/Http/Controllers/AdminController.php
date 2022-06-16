@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 // use Illuminate\Support\Facades\Auth;
 // use Session;
 
@@ -37,8 +38,10 @@ class AdminController extends Controller
         ],
         [
             'username.required' => 'Username Required.',
-            'pass.required' => 'Password must be atleast 8 characters.',
-            'confirm_password' => 'Password does not match, try again.' 
+            'pass.required' => 'Password Required.',
+            'pass.min:8' => 'Password must be atleast 8 characters.',
+            'confirm_password.required' => 'Please confirm your password.',
+            'confirm_password.same:pass' => 'Password does not match, try again.' 
         ]);
 
         $username = Admin::where('username', $request->username)->exists();
@@ -57,36 +60,26 @@ class AdminController extends Controller
         }
     }
 
-    public function login()
-    {
-        return view('auth\login');
-    } 
-
-    public function customLogin(Request $request)
-    {
-        $request->validate([
-
-          'username' => 'required',
-          'pass' => 'required',
-
-        ]);
-
-        $credentails = $request->only('username','pass');
-
-        // return dd($credentails);
-
-        if(Auth::attempt($credentails))
+        public function login()
         {
-          return redirect()->intended()('master')->withSuccess('Signed In');
-          
-        }
-        else
+            return view('auth\login');
+        } 
+
+        public function customLogin(Request $request)
         {
-          return redirect('login')->withError('Invalid username or password.');
+            $request->validate([
+                'username' => 'required',
+                'pass' => 'required',
+            ]);
+       
+            $credentials = $request->only('username', 'pass');
+            if (Auth::attempt($credentials)) 
+            {
+                return redirect()->intended('index');
+            }
+      
+            return redirect("login")->withSuccess('Login details are not valid');
         }
-
-
-    } 
 
 
     public function signOut() {
